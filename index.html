@@ -1,0 +1,500 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>Demo</title>
+		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+		<link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css" />
+		<link rel="stylesheet" type="text/css" media="screen" href="css/style.css">
+		<style>
+			.td-amount 
+				{
+				background-color: #FFEBCD;
+				text-align: right;
+
+				}
+				
+			.td-diff 
+				{
+				background-color: #FFE4E1;
+				text-align: right;
+				}
+				
+			.td-spec 
+				{
+				background-color: #AFEEEE;
+				text-align: right;
+				}
+
+			.td-right
+				{
+				text-align: right;
+				}
+				
+			.bold
+				{
+				font-weight:bold;
+				}
+				
+			.thead
+				{
+				background-color: #e54698;
+				}
+			
+			#leftgrid .trow, #leftgrid .thead .static
+				{
+				cursor:pointer;
+				}
+			
+			#leftgrid .thead
+				{
+				cursor:pointer;
+				}
+				
+			.border	{
+				border 1px dotted;
+				border-color: #e54698;
+				background-color: #e54698;
+				color: #FFF;
+				}
+
+			.GridSmall	{
+				width:100px;
+				}
+
+			.GridLarge	{
+				width:350px;
+				}
+		</style>
+		<!-- FAVICONS -->
+		<link rel="shortcut icon" href="img/favicon/favicon.png" type="image/png">
+		<link rel="icon" href="img/favicon/favicon.png" type="image/png">
+	</head>
+	<body>
+		<nav class="navbar navbar-expand-lg bg-body-tertiary headr">
+			<div class="container-fluid">
+				<a class="navbar-brand" href="#">Demo</a>
+				<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+					<span class="navbar-toggler-icon"></span>
+				</button>
+				<div class="collapse navbar-collapse" id="navbarSupportedContent">
+					<ul class="navbar-nav me-auto mb-2 mb-lg-0">
+					</ul>
+				</div>
+				<form class="d-flex drpdwn-wrap" role="search">
+					<ul class="navbar-nav me-auto mb-2 mb-lg-0">
+						<li class="nav-item dropdown">
+							<a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+							Companies
+							</a>
+							<ul id="CompanySelector" class="dropdown-menu"></ul>
+						</li>
+					</ul>
+				</form>
+			</div>
+		</nav>
+		<div class="wrapper">
+			<div class="top-menu">
+				<div class="row">
+					<div class="col-md-6">
+						<div class="options-nav">
+							<a class="chooseperiod">Period</a>
+							<a class="saveperiod">Save</a>
+						</div>
+					</div>
+					<div class="col-md-6">
+						<div class="comp-name">
+							<h6 id="companyName"></h6>
+						</div>
+					</div>
+				</div>
+			</div>
+			
+			<div id="Company" class="col py-3">
+				<div id="main">
+					<div class="main-row">
+						<div class="column column-1">
+							<div class="chooseperiod-wrap">
+								<ul id="Periods">
+								</ul>
+							</div>
+						</div>
+						<div class="column column-2">
+							<div class="text-left float-left GridLarge" id="leftgrid">
+								<div class="row thead bold">
+									<div class="col static theadng">AccountNo</div>
+									<div class="col theadng">AccountName</div>
+									<div class="col theadng">Amount</div>
+									<div class="col theadng">Specification</div>
+									<div class="col theadng">Diff</div>
+								</div>
+							</div>
+						</div>
+						<div class="column column-3">			
+							<div class="text-center float-left GridLarge" id="rightgrid">
+								<div class="row thead bold">
+									<div class="col theadng">1220</div>
+									<div class="col theadng">Inventarier</div>
+									<div class="col theadng">22 715</div>
+								</div>
+								<div class="row thead2 bold">
+									<div class="col tsubheadng"></div>
+									<div class="col tsubheadng">VerDate</div>
+									<div class="col tsubheadng">VerNo</div>
+									<div class="col tsubheadng">VerText</div>
+									<div class="col tsubheadng">Amount</div>
+									<div class="col tsubheadng"></div>
+								</div>
+								<div class="row tfoot bold">
+									<div class="col"><li class="fas fa-pen"></li></div>
+									<div class="col">22 715</div>
+								</div>
+							</div>	
+						</div>
+					</div>		
+				</div>
+			</div>
+		</div>
+
+		<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+		<script type="text/javascript" src="js/jquery-3.3.1.min.js"></script>
+		<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+		<script type="text/javascript" src="js/bootstrap.min.js"></script>
+		<script src="https://kit.fontawesome.com/323cdfc8cc.js" crossorigin="anonymous"></script>
+		<script>
+			var ClientInfo;
+			var PeriodInfo;
+			var BRInfo;
+			var AccountInfo;
+			var DoLog = false;
+
+			$(document).ready(function () {
+				AddEvents();
+				LoadData();
+			});
+			
+			function AddEvents()
+			{
+				$(".saveperiod").hide().click(function(){
+					SavePeriod();
+				});
+				$(".chooseperiod").click(function(){
+					$(".chooseperiod-wrap").slideToggle();
+				});
+
+				$("#rightgrid").hide();
+				$('#leftgrid').hide();
+
+				$("#leftgrid .thead div").first().click(function(){
+					MaximizeGrid1();
+				});
+				
+				$(".tfoot li.fa-pen").click(function(){
+					AddEmptyGrid();
+				});
+				
+				
+			}
+			
+			function LoadData()
+			{
+				$.ajax({url: 'data/testdata.json'})
+				.done(function (data) {
+                    Logging(data);
+					$.each(data.Companies, function (index, item) {
+						var a = $("<a></a>").text(item.ClientName).addClass("dropdown-item").click(function(){
+							SetCompany($(this).parent().data("Client"));
+						}); 
+						var li = $("<li></li>").data( "Client", { ClientID: item.ClientID, ClientNr: item.ClientNr, ClientName: item.ClientName, Reconciliations: item.Reconciliations } ).append(a); 
+						$('#CompanySelector').append(li);					
+					 });
+				});
+			}
+			
+			function SetCompany(clientInfo)
+			{
+				ClientInfo = clientInfo;
+				Logging(ClientInfo.ClientName);
+				$("#companyName").html(ClientInfo.ClientName);
+				$("#rightgrid").hide();
+				$('#leftgrid').hide();
+				LoadPeriods(ClientInfo.Reconciliations)
+			}
+
+			function LoadPeriods(Reconciliations)
+			{
+				Logging(Reconciliations);
+				$('#Periods').html('');
+				$.each(Reconciliations, function (index, item) {
+					var a = $("<a></a>").text(item.ReconciliationPeriod).addClass("dropdown-item").click(function(){
+						$(".chooseperiod-wrap").slideToggle();
+						MaximizeGrid1();
+						PeriodInfo = $(this).parent().data();
+						ShowBR(item.AccountItems);
+						Logging($(this).parent().data());
+					});
+					if(!item.ReconciliationOpen)
+					{
+					$(a).addClass("bold");
+					}
+					var li = $("<li></li>").data( "Reconciliation", { ReconciliationID: item.ReconciliationID, ReconciliationPeriod: item.ReconciliationPeriod, ReconciliationOpen: item.ReconciliationOpen, AccountItems: item.AccountItems } ).append(a); 
+					$('#Periods').append(li);
+				});
+			}
+			
+			function ShowBR(AccountItems)
+			{
+				Logging("Ladda balansrapport");
+				$('#leftgrid').show();
+				$('#leftgrid .row').each(function(index) {
+					if(index >0)
+						{
+						$(this).remove();
+						}
+				});
+				$.each(AccountItems, function (index, item) {
+
+
+					var div1 = $("<div></div>").addClass("col static").text(item.AccountNo);
+					var div2 = $("<div></div>").addClass("col").text(item.AccountName);
+					var div3 = $("<div></div>").addClass("col td-amount").text(item.Amount);
+					var div4 = $("<div></div>").addClass("col td-spec").text(item.Specifications);
+					var div5 = $("<div></div>").addClass("col td-spec").text(item.Diff);
+					var div = $("<div></div>").addClass("row trow").data( "AccountItem", { ReconciliationID: item.ReconciliationID, AccountNo: item.AccountNo, AccountName: item.AccountName, Amount: item.Amount, Diff : item.Diff, Specifications:item.Specifications, bookKeepingItems: item.bookKeepingItems}).append(div1).append(div2).append(div3).append(div4).append(div5).click(function(){
+						BRInfo = $(this).data();
+
+						$(this).find("div").removeClass("border");
+						MinimizeGrid1($(this).find("div").first());
+
+						ShowAccount(item.bookKeepingItems);
+						Logging($(this).data());
+					});
+					$('#leftgrid').append(div);
+
+				});
+				Logging($('#leftgrid row').first());
+			}
+			
+
+			function ShowAccount(bookKeepingItems)
+			{
+				Logging(BRInfo.AccountItem.AccountNo);
+				$('#rightgrid .thead .col').eq(0).html(BRInfo.AccountItem.AccountNo);
+				$('#rightgrid .thead .col').eq(1).html(BRInfo.AccountItem.AccountName);
+				$('#rightgrid .thead .col').eq(2).html(BRInfo.AccountItem.Amount);
+				$('#rightgrid .tfoot .col').eq(1).html(BRInfo.AccountItem.Diff);
+
+
+
+				$('#rightgrid .trow').each(function(index) {
+					$(this).remove();
+				});
+
+
+				$.each(bookKeepingItems, function (index, item) {
+					(GetGridRow(item, index)).insertBefore($('#rightgrid .tfoot'));
+				
+//					$('#rightgrid').append(GetGridRow(item, index));
+				});
+
+
+			}
+
+			function EditRow(rowData, row)
+			{
+				Logging("Ändrar");
+				var div = GetGridEditRow(rowData, row, "oldRow");
+				var currentDiv = $('#rightgrid .trow').eq(row);
+				$(currentDiv).replaceWith(div);
+				Logging(rowData);
+			}
+			
+			function AddEmptyGrid()
+				{
+				Logging("Skapar ny rad", true);
+				
+
+				var rowData = {"VerDate":"", "VerText":"", amount:Number($('#rightgrid .tfoot .col').eq(1).html()),changed:true };
+				
+				(GetGridEditRow(rowData, $('#rightgrid .trow').length+1, "newRow")).insertBefore($('#rightgrid .tfoot'));
+				}
+				
+
+			function SaveRow(rowData, row, oldrow)
+			{
+				Logging("Sparar");
+				var currentDiv = $(oldrow).find('.col').eq(4);
+
+
+				var tdAmount = oldrow.find('td')[4];
+				
+				rowData.VerDate=$(oldrow).children("div.col").eq(1).find('input').val();
+				rowData.VerText=$(oldrow).children("div.col").eq(3).find('input').val();
+				rowData.amount=Number($(oldrow).children("div.col").eq(4).find('input').val());
+				rowData.changed=true;
+
+				var div = GetGridRow(rowData, row);
+				var currentDiv = $('#rightgrid .row').eq(row+2);
+				$(currentDiv).replaceWith(div);
+
+				CalcIt();
+				$(".saveperiod").show()
+				Logging(rowData);
+			}
+
+
+			function GetGridRow(rowData, row)
+			{
+				var div1 = $("<div></div>").addClass("col").text('');
+				if(!PeriodInfo.Reconciliation.ReconciliationOpen)
+				{
+					Logging('adding pen');
+					//aria-hidden="true"
+					var li = $("<li></li>").addClass("fas fa-pen").click(function(){
+//						EditRow(rowData, row);
+					});
+//					$(div1).append(li);
+				}
+				var div2 = $("<div></div>").addClass("col").text(rowData.VerDate);
+				var div3 = $("<div></div>").addClass("col").text('');
+				var div4 = $("<div></div>").addClass("col").text(rowData.VerText);
+				var div5 = $("<div></div>").addClass("col").text(rowData.amount).addClass("td-amount");
+				var div6 = $("<div></div>").addClass("col").text('');
+				if(rowData.verHaveImg)
+				{
+					Logging('adding img');
+					//aria-hidden="true"
+					var li = $("<li></li>").addClass("fas fa-image").click(function(){
+						ShowImg(rowData.ID);
+					});
+					$(div6).append(li);
+				}
+
+				var div = $("<div></div>").addClass("row trow").data( "bookKeepingItem", { ID: rowData.ID, ReconciliationID: rowData.ReconciliationID, AccountNo: rowData.accountNo, Amount: rowData.amount, VerText: rowData.VerText, verHaveImg: rowData.verHaveImg, changed : false}).append(div1).append(div2).append(div3).append(div4).append(div5).append(div6);
+				if(!PeriodInfo.Reconciliation.ReconciliationOpen)
+				{
+					div.click(function(){
+						AccountInfo = $(this).data();
+						Logging($(this).data());
+						EditRow(rowData, row);
+					});
+				}
+				else
+				{
+					div.click(function(){
+						AccountInfo = $(this).data();
+						Logging($(this).data());
+					});
+				}
+
+				return div;
+			}
+
+			function GetGridEditRow(rowData, row, flag)
+			{
+				if(flag == "newRow") row--;
+				var li = $("<li></li>").addClass("fas fa-save").click(function(e){
+
+						SaveRow(rowData, row, $(this).parents("div").parents("div"));
+					});
+				var div1 = $("<div></div>").addClass("col").append(li);
+				var inp1= $("<input type='text'></input>").val(rowData.VerDate);
+				var div2 = $("<div></div>").addClass("col").append(inp1);
+				var div3 = $("<div></div>").addClass("col").text('');
+				var inp2= $("<input type='text'></input>").val(rowData.VerText);
+				var div4 = $("<div></div>").addClass("col").append(inp2);
+				var inp3= $("<input type='text'></input>").val(rowData.amount);
+				var div5 = $("<div></div>").addClass("col").append(inp3);
+				var div6 = $("<div></div>");
+				var div = $("<div></div>").addClass("row trow").data( "bookKeepingItem", { ID: rowData.ID, ReconciliationID: rowData.ReconciliationID, AccountNo: rowData.accountNo, Amount: rowData.amount, VerText: rowData.VerText, verHaveImg: rowData.verHaveImg, changed : true}).append(div1).append(div2).append(div3).append(div4).append(div5).append(div6);
+				return div;
+			}
+
+			function CalcIt()
+			{
+				var newSum=0;
+				var Pelle;
+
+				$('#rightgrid').find('.trow').each(function (index, item) {
+					newSum += $(item).data("bookKeepingItem").Amount;
+					Pelle = $(item).data("bookKeepingItem");
+				});
+				$('#rightgrid .tfoot .col').eq(1).html(newSum);
+				UpdateBR(Pelle, newSum);
+				Logging(newSum);
+			}
+
+			function UpdateBR(row, newSum)
+			{
+				$('#leftgrid').find('.trow').each(function (index, item) {
+					if($(item).data("AccountItem").ReconciliationID==row.ReconciliationID && $(item).data("AccountItem").AccountNo==row.AccountNo)
+					{
+						$(item).data("AccountItem").Specifications = newSum;
+						$(item).data("AccountItem").Diff = $(item).data("AccountItem").Amount - $(item).data("AccountItem").Specifications;
+
+						Logging($(item).html());
+
+						$($(item).find('.col')[3]).text($(item).data("AccountItem").Specifications);
+						$($(item).find('.col')[4]).text($(item).data("AccountItem").Diff);
+
+						Logging($(item).data("AccountItem").AccountName);
+					}
+				});
+
+				Logging(row.ReconciliationID);
+			}
+			
+			function SavePeriod()
+			{
+				$('#leftgrid .trow').each(function(index){
+					if(index<1)
+					{
+						var i;
+						for (i = 0; i < $(this).data("AccountItem").bookKeepingItems.length; ++i) {
+							if($(this).data("AccountItem").bookKeepingItems[i].changed)
+							{
+								Logging("Saving", true);
+								Logging($(this).data("AccountItem").bookKeepingItems[i], true);
+							}
+						}						
+						
+					}
+				});
+			}
+			
+			function MinimizeGrid1(row)
+			{
+				Logging(row);
+				$("#leftgrid").find(".row .col").each(function(){
+					$(this).removeClass("border");
+					});
+				$(row).addClass("border");
+				$("#leftgrid").addClass("GridSmall").removeClass("GridLarge");
+				$("#leftgrid .row .col").not(".static").hide();
+				$("#rightgrid").show();
+			}
+			
+			function MaximizeGrid1()
+			{
+				$("#leftgrid").find(".trow").each(function(){
+					$(this).find("div").each(function(){
+						$(this).removeClass("border");
+					});
+				});
+				$("#leftgrid").addClass("GridLarge").removeClass("GridSmall");
+				$("#leftgrid .row .col").show();
+				$("#rightgrid").hide();
+			}
+
+			function Logging(text, force)
+			{
+				if(DoLog || force)
+				{
+					console.log(text);
+				}
+			}
+
+		</script>
+	</body>
+</html>

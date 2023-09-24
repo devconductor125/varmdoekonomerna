@@ -1,0 +1,230 @@
+.headr {
+    background-color: #e54698 !important;
+}
+.navbar-brand {
+    color: #fff !important;
+}
+.drpdwn-wrap ul.navbar-nav {
+    color: #fff !important;
+    cursor: pointer;
+}
+.nav-link.dropdown-toggle {
+    color: #fff !important;
+}
+.drpdwn-wrap .dropdown-menu[data-bs-popper] {
+    top: 100%;
+    left: -40%;
+}
+.drpdwn-wrap .dropdown-item {
+    background-color: #fff;
+    color: #808080;
+}
+.drpdwn-wrap .dropdown-item:focus, .drpdwn-wrap .dropdown-item:hover, .drpdwn-wrap .dropdown-item.active, .drpdwn-wrap .dropdown-item:active {
+    text-align: center;
+    color: #fff;
+    background-color: #db48ae !important;
+}
+.drpdwn-wrap #CompanySelector {
+    background-color: #fff !important;
+    left: -21px !important;
+    top: 45px !important;
+    border-radius: 0px;
+    width: auto;
+    padding: 0;
+}
+table tr {
+    text-align: center;
+    padding: 20px !important;
+    line-height: 40px;
+}
+table tr td {
+    padding: 8px;
+}
+
+table {
+    caption-side: bottom;
+    border-collapse: collapse;
+    margin: auto;
+    width: 100%; 
+   box-shadow: 0px 0px 3px #b9adb8;
+}
+.thead {
+    background-color: #e54698;
+}
+thead th {
+    padding: 5px;
+    color: #fff;
+}
+#detailstable thead {
+    background-color: #000;
+}
+table#detailsheadertable tbody {
+    background: #f1efef;
+}
+tr:nth-child(even) {
+    background-color: #dbdbdb;
+}
+td input {
+    background-color: transparent;
+    border: none;
+    text-align: center;
+}
+tfoot {
+    background-color: #eeafd17d;
+}
+.td-spec {
+    background-color: transparent !important;
+    text-align: center !important;
+}
+.td-amount {
+    background-color: transparent !important;
+    text-align: center !important;
+}
+.td-diff {
+    background-color: transparent !important;
+    text-align: center !important;
+}
+a.navbar-brand {
+    font-weight: 700;
+    margin-left: 10px;
+}
+a.nav-link.dropdown-toggle:hover {
+    font-weight: 700;
+}
+h1.text-center {
+    /*border-bottom: 5px solid #dfdfdf;*/
+    width: fit-content;
+    margin: auto;
+    padding-bottom: 10px;
+    margin-bottom: 30px;
+}
+h1:after {
+    content: "";
+    position: absolute;
+    width: 100px;
+    height: 4px;
+    background-color: #db48ae;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+}
+h1.text-center {
+    padding-bottom: 10px;
+    margin-bottom: 30px;
+    position: relative;
+}
+#Periods {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    box-shadow: 0px 0px 8px 1px #ddd;
+    left: 0px;
+    position: relative;
+    top: 0;
+    padding: 0px;
+    width: 130px !important;
+    margin-right: 20px;
+}
+#Periods li {
+    list-style-type: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: 700;
+    color: #000;
+    border-bottom: 1px solid #ddd;
+}
+#Periods li a {
+    cursor: pointer;
+    text-decoration: none;
+}
+.chooseperiod, .saveperiod {
+    background-color: #e54698;
+    padding: 10px 10px;
+    text-align: center;
+    color: #fff;
+    text-decoration: none;
+    font-weight: 700;
+    margin-left: 20px;
+}
+.chooseperiod span, .saveperiod span {
+    color: #fff;
+}
+#mySidebar {
+    margin-top: 20px;
+}
+#detailslist {
+    margin-top: 8px;
+}
+.closebtn {
+    background-color: #000;
+    color: #fff;
+    text-decoration: none;
+    font-weight: 700;
+    width: 25px;
+    height: 30px;
+    display: table;
+    text-align: center;
+    font-size: 20px;
+}
+
+.theadng {
+    color: #fff;
+    padding: 10px;
+    text-align: center;
+}
+.col {
+    padding: 10px 20px;
+    text-align: center;
+}
+.tsubheadng {
+    background-color: #000;
+    color: #fff;
+    padding: 7px 10px;
+    text-align: center;
+}
+.GridLarge {
+    width: auto !important;
+}
+.trow:nth-child(odd) {
+    background-color: #dbdbdb;
+}
+.choose-title {
+    font-size: 17px;
+    font-weight: 700;
+    color: #808080;
+}
+.chooseperiod-wrap {
+    display: none;
+}
+.top-menu {
+    padding: 20px 0px;
+    border-bottom: 1px solid #ddd;
+    box-shadow: 0px 0px 3px 1px #ddd;
+}
+.comp-name h6 {
+    font-size: 18px;
+    font-weight: 700;
+    color: #808080;
+    text-align: right;
+    margin: 0px 20px;
+    text-transform: capitalize;
+}
+.wrapper {
+    overflow: hidden;
+}
+.main-row {
+    display: flex;
+}
+.column {
+    float: left;
+}
+.column.column-1 {
+    
+}
+.column.column-2 {
+    margin: 0px 40px 0px 10px;
+    /* width: 30%; */
+}
+.column.column-3 {
+    width: 50%;
+}
